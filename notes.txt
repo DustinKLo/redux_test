@@ -1,0 +1,9 @@
+
+const store = createStore(rootReducer);
+
+mapStateToProps
+	- connects a part of the Redux state to the props of a React component
+	- By doing so a connected React component will have access to the part of the store it needs
+
+mapDispatchToProps
+	- connects Redux actions to React props
