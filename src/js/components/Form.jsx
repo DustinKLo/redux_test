@@ -6,6 +6,7 @@ import { addArticle } from "../actions/index";
 
 function mapDispatchToProps(dispatch) {
   return {
+    // article is the action { type: 'ACTION_TYPE', payload: '' }
     addArticle: article => dispatch(addArticle(article))
   };
 }
@@ -28,7 +29,11 @@ class ConnectedForm extends Component {
     event.preventDefault();
     const { title } = this.state;
     const id = uuidv1();
-    this.props.addArticle({ title, id });
+    if (!title || title.trim().length === 0) {
+      event.preventDefault();
+    } else {
+      this.props.addArticle({ title, id });
+    }
     this.setState({ title: "" });
   }
 

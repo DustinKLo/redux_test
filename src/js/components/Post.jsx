@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getData } from "../actions/index";
+import { getData, editPageSize } from "../actions/index";
 
 export class Post extends Component {
   constructor() {
@@ -9,25 +9,28 @@ export class Post extends Component {
 
   componentDidMount() {
     // calling the new action creator
-    this.props.getData();
+    this.props.getData(this.props.pageSize);
   }
 
   render() {
     return (
-      <ul className="list-group list-group-flush">
-        {this.props.articles.map(el => (
-          <li className="list-group-item" key={el.id}>
-            {el.title}
-          </li>
-        ))}
-      </ul>
+      <div>
+        <ul className="list-group list-group-flush">
+          {this.props.articles.map(el => (
+            <li className="list-group-item" key={el.id}>
+              {el.title}
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    articles: state.remoteArticles.slice(0, 20)
+    articles: state.remoteArticles,
+    pageSize: state.pageSize
   };
 }
 

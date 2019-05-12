@@ -9,7 +9,6 @@ export function forbiddenWordsMiddleware({ dispatch }) {
       if (action.type === ADD_ARTICLE) {
         // console.log(next);
         console.log(action);
-        console.log(action.payload);
         
         const foundWord = forbiddenWords.filter(word =>
           action.payload.title.includes(word)

@@ -1,10 +1,11 @@
 // src/js/reducers/index.js
 
-import { ADD_ARTICLE, DATA_LOADED } from '../constants/action-types.js';
+import { ADD_ARTICLE, DATA_LOADED, PAGE_SIZE } from '../constants/action-types.js';
 
 const initialState = {
 	articles: [],
-	remoteArticles: []
+	remoteArticles: [],
+	pageSize: 10
 };
 
 function rootReducer(state = initialState, action) {
@@ -17,7 +18,13 @@ function rootReducer(state = initialState, action) {
 		case DATA_LOADED:
 			return {
 				...state,
-				remoteArticles: state.remoteArticles.concat(action.payload)
+				// remoteArticles: state.remoteArticles.concat(action.payload)
+				remoteArticles: action.payload
+			};
+		case PAGE_SIZE:
+			return {
+				...state,
+				pageSize: action.payload
 			};
 		default:
 			return state;
