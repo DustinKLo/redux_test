@@ -22,6 +22,7 @@ export function getData(n) {
     return fetch("https://jsonplaceholder.typicode.com/posts")
       .then(response => response.json())
       .then(json => {
+        console.log("data fetched and dispatched to reducer");
         dispatch({ type: "DATA_LOADED", payload: json.slice(0, n) });
       });
   };
